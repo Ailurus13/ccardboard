@@ -1,9 +1,13 @@
-import * as React from "react";
 import { createRoot } from "react-dom/client";
+import { MovieForm } from "./movie/MovieForm";
+
+function App() {
+  return <MovieForm />;
+}
 
 function render() {
   const root = createRoot(document.getElementById("app"));
-  root.render(<h2>Hello from React!</h2>);
+  root.render(<App />);
 }
 
 render();
