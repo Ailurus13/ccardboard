@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export function MovieForm() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
 
   const createMovie = async () => {
     const [res, err] = await window.electron.createMovie({ name });

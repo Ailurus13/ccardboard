@@ -26,7 +26,7 @@
  * ```
  */
 
-import { IElectronAPI } from "./preload";
+import { IElectronAPI } from './preload';
 
 declare global {
   interface Window {
@@ -34,5 +34,5 @@ declare global {
   }
 }
 
-import "./index.css";
-import "./App";
+import './index.css';
+import './App';

@@ -1,5 +1,5 @@
-import { contextBridge, ipcRenderer } from "electron";
-import { Movie } from "./model/Movie";
+import { contextBridge, ipcRenderer } from 'electron';
+import { Movie } from './model/Movie';
 
 export type ElectronApiError = string;
 
@@ -10,7 +10,7 @@ export type IElectronAPI = {
 };
 
 const communication: IElectronAPI = {
-  createMovie: (movie: Movie) => ipcRenderer.invoke("movie:create", movie),
+  createMovie: (movie: Movie) => ipcRenderer.invoke('movie:create', movie),
 };
 
-contextBridge.exposeInMainWorld("electron", communication);
+contextBridge.exposeInMainWorld('electron', communication);
