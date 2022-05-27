@@ -28,18 +28,19 @@ const createWindow = (): void => {
   mainWindow.webContents.openDevTools();
 };
 
-// TODO: Move it to its own file
-async function createMovie(_: any, args: any) {
-  // TODO: Handle args type properly
-  console.log(args);
-  return "hello";
-}
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
-  ipcMain.handle("movie:create", createMovie);
+  // TODO: Handle args properly
+  ipcMain.handle("movie:create", (_, movie) => {
+    console.log(movie);
+    if (Math.random() > 0.5) {
+      return [null, "BITE"];
+    } else {
+      return ["Yo yo yo ça marche !"];
+    }
+  });
   createWindow();
 });
 

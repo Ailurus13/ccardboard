@@ -1,21 +1,15 @@
 import { useState } from "react";
-import { IElectronAPI } from "../preload";
-
-// TODO: Make it global
-declare global {
-  interface Window {
-    electron: IElectronAPI;
-  }
-}
 
 export function MovieForm() {
   const [name, setName] = useState("");
 
-  console.log(name);
-
   const createMovie = async () => {
-    const test = await window.electron.createMovie({ name });
-    setName(test);
+    const [res, err] = await window.electron.createMovie({ name });
+    if (res) {
+      setName(res);
+    } else {
+      console.log(`Oups y'a une erreur bg : ${err}`);
+    }
   };
 
   return (

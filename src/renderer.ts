@@ -26,5 +26,13 @@
  * ```
  */
 
+import { IElectronAPI } from "./preload";
+
+declare global {
+  interface Window {
+    electron: IElectronAPI;
+  }
+}
+
 import "./index.css";
 import "./App";

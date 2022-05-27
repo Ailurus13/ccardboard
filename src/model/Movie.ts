@@ -1,3 +1,3 @@
-export interface Movie {
+export type Movie = {
   name: string;
-}
+};
