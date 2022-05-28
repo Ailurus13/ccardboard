@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
-    "format": "prettier --write ."
+    "format": "prettier --write src/**/*.{ts,tsx}"
   },
   "keywords": [
     "cinema",
@@ -52,9 +52,9 @@
               "config": "./webpack.renderer.config.js",
               "entryPoints": [
                 {
-                  "html": "./src/index.html",
-                  "js": "./src/renderer.ts",
                   "name": "main_window",
+                  "html": "./src/renderer/index.html",
+                  "js": "./src/renderer.ts",
                   "preload": {
                     "js": "./src/preload.ts"
                   }

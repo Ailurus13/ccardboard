@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { Movie } from './entity/movie.entity';
+import { Movie } from '../common/entity/Movie.entity';
 
 export const db = new DataSource({
   type: 'better-sqlite3',

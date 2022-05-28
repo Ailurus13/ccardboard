@@ -1,16 +1,18 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { Movie } from './model/Movie';
+import { Movie } from './common/entity/Movie.entity';
+import { CreateMovieDTO } from './common/dto/CreateMovie.dto';
 
 export type ElectronApiError = string;
 
 export type ElectronApiResponse<T> = [T, ElectronApiError];
 
 export type IElectronAPI = {
-  createMovie: (movie: Movie) => Promise<ElectronApiResponse<string>>;
+  createMovie: (movie: CreateMovieDTO) => Promise<ElectronApiResponse<Movie>>;
 };
 
 const communication: IElectronAPI = {
-  createMovie: (movie: Movie) => ipcRenderer.invoke('movie:create', movie),
+  createMovie: (movie: CreateMovieDTO) =>
+    ipcRenderer.invoke('movie:create', movie),
 };
 
 contextBridge.exposeInMainWorld('electron', communication);

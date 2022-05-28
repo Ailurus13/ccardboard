@@ -4,12 +4,8 @@ export function MovieForm() {
   const [name, setName] = useState('');
 
   const createMovie = async () => {
-    const [res, err] = await window.electron.createMovie({ name });
-    if (res) {
-      setName(res);
-    } else {
-      console.log(`Oups y'a une erreur bg : ${err}`);
-    }
+    const [movie, err] = await window.electron.createMovie({ name });
+    console.log(movie, err);
   };
 
   return (

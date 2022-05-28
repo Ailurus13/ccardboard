@@ -34,5 +34,5 @@ declare global {
   }
 }
 
-import './index.css';
-import './App';
+import './renderer/index.css';
+import './renderer/App';
