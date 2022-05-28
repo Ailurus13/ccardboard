@@ -14,7 +14,7 @@ export function MovieList() {
 
   return (
     <div>
-      <h1>List des films</h1>
+      <h1>Liste des films</h1>
       {movies.map((m) => (
         <div key={m.id}>
           <p>{m.name}</p>

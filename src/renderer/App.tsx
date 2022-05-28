@@ -1,19 +1,27 @@
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { MovieForm } from './movie/MovieForm';
-import { MovieList } from './movie/MovieList';
+import { Template } from './Template';
+import { MovieForm } from './movies/MovieForm';
+import { MovieList } from './movies/MovieList';
 
 function App() {
   return (
-    <div>
-      <MovieForm />
-      <MovieList />
-    </div>
+    <Routes>
+      <Route path="/" element={<Template />}>
+        <Route index element={<MovieList />} />
+        <Route path="create" element={<MovieForm />} />
+      </Route>
+    </Routes>
   );
 }
 
 function render() {
   const root = createRoot(document.getElementById('app'));
-  root.render(<App />);
+  root.render(
+    <HashRouter>
+      <App />
+    </HashRouter>
+  );
 }
 
 render();
