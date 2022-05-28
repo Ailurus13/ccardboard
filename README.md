@@ -23,3 +23,11 @@ More details at https://github.com/nodejs/node-gyp
 npm config set msvs_version 2022
 npm config set msbuild_path "C:\Program Files\Microsoft Visual Studio\2022\Community\Msbuild\Current\Bin\MSBuild.exe"
 ```
+
+### More configuration
+
+Git CRLF
+
+```
+git config core.autocrlf false
+```
