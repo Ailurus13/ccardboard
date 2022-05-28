@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { Movie } from './common/entity/Movie.entity';
-import { CreateMovieDTO } from './common/dto/CreateMovie.dto';
+import { CreateMovieDTO } from '@common/dto/CreateMovie.dto';
+import { Movie } from '@common/entity/Movie.entity';
 
 export type ElectronApiError = string;
 

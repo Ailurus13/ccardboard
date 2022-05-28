@@ -14,7 +14,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {
-      "*": ["node_modules/*"]
+      "*": ["node_modules/*"],
+      "@main/*": ["src/main/*"],
+      "@common/*": ["src/common/*"],
+      "@renderer/*": ["src/renderer/*"]
     }
   },
   "include": ["src/**/*"]
