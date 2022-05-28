@@ -9,3 +9,9 @@ export async function createMovie(movie: CreateMovieDTO) {
   await movieRepository.save(createdMovie);
   return createdMovie;
 }
+
+export async function getAllMovies() {
+  const movieRepository = db.getRepository(Movie);
+  const movies = await movieRepository.find();
+  return movies;
+}

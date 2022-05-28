@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-import { createMovie } from '@main/services/movie.service';
+import { createMovie, getAllMovies } from '@main/services/movie.service';
 import { db } from '@main/db';
 import 'reflect-metadata';
 
@@ -42,6 +42,11 @@ app.on('ready', async () => {
   ipcMain.handle('movie:create', async (_, movie) => {
     const createdMovie = await createMovie(movie);
     return [createdMovie];
+  });
+
+  ipcMain.handle('movie:getAll', async () => {
+    const movies = await getAllMovies();
+    return [movies];
   });
 
   createWindow();

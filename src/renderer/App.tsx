@@ -1,8 +1,14 @@
 import { createRoot } from 'react-dom/client';
 import { MovieForm } from './movie/MovieForm';
+import { MovieList } from './movie/MovieList';
 
 function App() {
-  return <MovieForm />;
+  return (
+    <div>
+      <MovieForm />
+      <MovieList />
+    </div>
+  );
 }
 
 function render() {
