@@ -1,5 +1,9 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { createMovie, getAllMovies } from '@main/services/movie.service';
+import {
+  getConfiguration,
+  setConfiguration,
+} from '@main/services/configuration.service';
 import { db } from '@main/db';
 import 'reflect-metadata';
 
@@ -38,7 +42,6 @@ const createWindow = (): void => {
 app.on('ready', async () => {
   await db.initialize();
 
-  // TODO: Handle args/return type properly
   ipcMain.handle('movie:create', async (_, movie) => {
     const createdMovie = await createMovie(movie);
     return [createdMovie];
@@ -47,6 +50,16 @@ app.on('ready', async () => {
   ipcMain.handle('movie:getAll', async () => {
     const movies = await getAllMovies();
     return [movies];
+  });
+
+  ipcMain.handle('configuration:get', async (_, key) => {
+    const config = await getConfiguration(key);
+    return [config];
+  });
+
+  ipcMain.handle('configuration:set', async (_, key, value) => {
+    const savedConfig = await setConfiguration(key, value);
+    return [savedConfig];
   });
 
   createWindow();

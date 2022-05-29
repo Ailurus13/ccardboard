@@ -1,6 +1,6 @@
 import { Routes, Route, HashRouter, Navigate } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { MovieForm } from './movies/MovieForm';
+import { MovieForm } from './movies/MovieForm/MovieForm';
 import { MovieList } from './movies/MovieList';
 import { Template } from './template/Template';
 
