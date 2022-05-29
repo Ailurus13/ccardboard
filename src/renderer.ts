@@ -34,5 +34,6 @@ declare global {
   }
 }
 
+import 'antd/dist/antd.css';
 import './renderer/index.css';
 import './renderer/App';

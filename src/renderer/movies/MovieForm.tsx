@@ -1,32 +1,35 @@
-import { useState } from 'react';
+import { Form, Input, Button, message } from 'antd';
 
 export function MovieForm() {
-  const [name, setName] = useState('');
+  const [form] = Form.useForm();
 
-  const createMovie = async () => {
-    const [movie, err] = await window.electron.createMovie({ name });
-    console.log(movie, err);
+  const createMovie = async ({ name }) => {
+    const [movie] = await window.electron.createMovie({ name });
+    if (movie) {
+      form.resetFields();
+      message.success('Film créé avec succès');
+    }
   };
 
   return (
     <div>
       <h1>Nouveau film</h1>
-      <div className="pb-2">
-        <span className="pr-2">Nom :</span>
-        <input
-          type="text"
-          placeholder="Spiderman"
-          className="border-2 rounded pr-2 pl-2 pt-1 pb-1"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <button
-        className="bg-blue-400 rounded pr-2 pl-2 pt-1 pb-1"
-        onClick={createMovie}
-      >
-        Valider
-      </button>
+      <Form form={form} onFinish={createMovie}>
+        <Form.Item
+          label="Nom"
+          name="name"
+          rules={[
+            { required: true, message: 'Veuillez indiquer le nom du film' },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Valider
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 }

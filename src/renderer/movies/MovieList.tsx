@@ -1,5 +1,14 @@
+import { Card } from 'antd';
 import { useEffect, useState } from 'react';
 import { Movie } from '@common/entity/Movie.entity';
+
+type MovieItemProps = {
+  movie: Movie;
+};
+
+export function MovieItem({ movie }: MovieItemProps) {
+  return <Card title={movie.name}>Coming later</Card>;
+}
 
 export function MovieList() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -13,12 +22,15 @@ export function MovieList() {
   }, []);
 
   return (
-    <div>
-      <h1>Liste des films</h1>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+        gap: '1vw',
+      }}
+    >
       {movies.map((m) => (
-        <div key={m.id}>
-          <p>{m.name}</p>
-        </div>
+        <MovieItem key={m.id} movie={m} />
       ))}
     </div>
   );

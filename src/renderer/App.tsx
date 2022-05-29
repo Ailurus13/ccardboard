@@ -1,14 +1,15 @@
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, HashRouter, Navigate } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { Template } from './Template';
 import { MovieForm } from './movies/MovieForm';
 import { MovieList } from './movies/MovieList';
+import { Template } from './template/Template';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Template />}>
-        <Route index element={<MovieList />} />
+        <Route index element={<Navigate to="/list" />} />
+        <Route path="list" element={<MovieList />} />
         <Route path="create" element={<MovieForm />} />
       </Route>
     </Routes>
