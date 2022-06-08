@@ -13,6 +13,7 @@ import {
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { TheMovieDbFill } from './TheMovieDbFill';
 import { PosterInput } from '../../components/PosterInput';
+import moment from 'moment';
 
 export function MovieForm() {
   const [form] = Form.useForm();
@@ -129,10 +130,19 @@ export function MovieForm() {
                             },
                           ]}
                         >
-                          <DatePicker placeholder="Date et heure" showTime />
+                          <DatePicker
+                            showNow={false}
+                            showTime={{
+                              defaultValue: moment('21:00:00', 'HH:mm:ss'),
+                            }}
+                          />
                         </Form.Item>
                         <Form.Item name={[name, 'language']}>
-                          <Select allowClear>
+                          <Select
+                            placeholder="Langue"
+                            allowClear
+                            style={{ width: 100 }}
+                          >
                             <Select.Option value="vf">VF</Select.Option>
                             <Select.Option value="vo">VO</Select.Option>
                           </Select>

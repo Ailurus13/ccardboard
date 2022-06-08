@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client';
 import { MovieForm } from './movies/MovieForm/MovieForm';
 import { MovieList } from './movies/MovieList';
 import { Template } from './template/Template';
+import { ConfigProvider } from 'antd';
+import locale from 'antd/lib/locale/fr_FR';
+import 'moment/locale/fr';
 
 function App() {
   return (
@@ -19,9 +22,11 @@ function App() {
 function render() {
   const root = createRoot(document.getElementById('app'));
   root.render(
-    <HashRouter>
-      <App />
-    </HashRouter>
+    <ConfigProvider locale={locale}>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </ConfigProvider>
   );
 }
 

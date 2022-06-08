@@ -1,4 +1,4 @@
-import { Card } from 'antd';
+import { Card, Empty } from 'antd';
 import { useEffect, useState } from 'react';
 import { Movie } from '@common/entity/Movie.entity';
 
@@ -22,16 +22,25 @@ export function MovieList() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-        gap: '1vw',
-      }}
-    >
-      {movies.map((m) => (
-        <MovieItem key={m.id} movie={m} />
-      ))}
-    </div>
+    <>
+      {movies.length == 0 && (
+        <div>
+          <Empty description="Vous n'avez pas encore ajouté de séances" />
+        </div>
+      )}
+      {movies.length > 0 && (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+            gap: '1vw',
+          }}
+        >
+          {movies.map((m) => (
+            <MovieItem key={m.id} movie={m} />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
