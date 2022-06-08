@@ -1,9 +1,10 @@
+import { ConfigProvider } from 'antd';
 import { Routes, Route, HashRouter, Navigate } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { MovieForm } from './movies/MovieForm/MovieForm';
 import { MovieList } from './movies/MovieList';
 import { Template } from './template/Template';
-import { ConfigProvider } from 'antd';
+import { Video } from './video/Video';
 import locale from 'antd/lib/locale/fr_FR';
 import 'moment/locale/fr';
 
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<Navigate to="/list" />} />
         <Route path="list" element={<MovieList />} />
         <Route path="create" element={<MovieForm />} />
+        <Route path="video" element={<Video />} />
       </Route>
     </Routes>
   );

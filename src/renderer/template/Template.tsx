@@ -10,6 +10,10 @@ const menuItems = [
     key: 'create',
     label: 'Nouveau',
   },
+  {
+    key: 'video',
+    label: 'Vidéo',
+  },
 ];
 
 export function Template() {

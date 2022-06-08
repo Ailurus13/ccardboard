@@ -10,7 +10,9 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
-    "format": "prettier --write src/**/*.{ts,tsx} *.{js,json}"
+    "format": "prettier --write src/**/*.{ts,tsx} *.{js,json}",
+    "remotion:preview": "remotion preview src/remotion/index.tsx",
+    "remotion:bundle": "ts-node build-remotion.ts"
   },
   "keywords": [
     "cinema",
@@ -80,6 +82,7 @@
     "@typescript-eslint/parser": "^5.26.0",
     "@vercel/webpack-asset-relocator-loader": "^1.7.0",
     "autoprefixer": "^10.4.7",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "electron": "19.0.1",
     "eslint": "^8.16.0",
@@ -90,9 +93,12 @@
     "prettier": "2.6.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.3.0",
+    "ts-node": "^10.8.1",
     "typescript": "~4.5.4"
   },
   "dependencies": {
+    "@remotion/cli": "^3.0.18",
+    "@remotion/player": "^3.0.18",
     "antd": "^4.20.6",
     "better-sqlite3": "^7.5.3",
     "electron-squirrel-startup": "^1.0.0",
@@ -100,6 +106,7 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "reflect-metadata": "^0.1.13",
+    "remotion": "^3.0.18",
     "typeorm": "^0.3.6"
   }
 }

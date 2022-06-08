@@ -17,6 +17,7 @@ export type IElectronAPI = {
   getConfiguration: (
     key: string
   ) => Promise<ElectronApiResponse<Configuration>>;
+  downloadRemotionVideo: () => Promise<void>;
 };
 
 const communication: IElectronAPI = {
@@ -26,6 +27,7 @@ const communication: IElectronAPI = {
   setConfiguration: (key, value) =>
     ipcRenderer.invoke('configuration:set', key, value),
   getConfiguration: (key) => ipcRenderer.invoke('configuration:get', key),
+  downloadRemotionVideo: () => ipcRenderer.invoke('download-remotion'),
 };
 
 contextBridge.exposeInMainWorld('electron', communication);

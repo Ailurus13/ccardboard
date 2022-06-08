@@ -1,9 +1,10 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import { createMovie, getAllMovies } from '@main/services/movie.service';
 import {
   getConfiguration,
   setConfiguration,
 } from '@main/services/configuration.service';
+import { generateVideo } from '@main/generate-video';
 import { db } from '@main/db';
 import 'reflect-metadata';
 
@@ -60,6 +61,15 @@ app.on('ready', async () => {
   ipcMain.handle('configuration:set', async (_, key, value) => {
     const savedConfig = await setConfiguration(key, value);
     return [savedConfig];
+  });
+
+  ipcMain.handle('download-remotion', async () => {
+    const output = dialog.showSaveDialogSync({
+      filters: [{ name: 'MP4', extensions: ['mp4'] }],
+    });
+    if (output) {
+      await generateVideo(output);
+    }
   });
 
   createWindow();
