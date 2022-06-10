@@ -1,3 +1,4 @@
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -17,5 +18,15 @@ module.exports = {
       '@common': path.resolve(__dirname, 'src/common'),
       '@renderer': path.resolve(__dirname, 'src/renderer'),
     },
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          keep_fnames: true,
+        },
+      }),
+    ],
   },
 };
