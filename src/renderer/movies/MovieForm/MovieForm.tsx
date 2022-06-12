@@ -19,9 +19,7 @@ export function MovieForm() {
   const [form] = Form.useForm();
 
   const createMovie = async (formValues) => {
-    console.log(formValues);
-    const { name } = formValues;
-    const [movie] = await window.electron.createMovie({ name });
+    const [movie] = await window.electron.createMovie(formValues);
     if (movie) {
       form.resetFields();
       message.success('Film créé avec succès');
@@ -83,7 +81,7 @@ export function MovieForm() {
               </Form.Item>
               <Form.Item
                 label="Art et essai"
-                name="artEtEssai"
+                name="arthouse"
                 valuePropName="checked"
                 initialValue={false}
               >
