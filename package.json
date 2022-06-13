@@ -101,6 +101,7 @@
     "@remotion/cli": "^3.0.18",
     "@remotion/player": "^3.0.18",
     "antd": "^4.20.6",
+    "axios": "^0.27.2",
     "better-sqlite3": "^7.5.3",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.1.0",

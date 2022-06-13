@@ -1,4 +1,4 @@
-import { Card, Empty } from 'antd';
+import { Card, Empty, Image } from 'antd';
 import { useEffect, useState } from 'react';
 import { Movie } from '@common/entity/Movie.entity';
 
@@ -7,7 +7,14 @@ type MovieItemProps = {
 };
 
 export function MovieItem({ movie }: MovieItemProps) {
-  return <Card title={movie.name}>Coming later</Card>;
+  return (
+    <Card title={movie.name}>
+      <p>Release : {movie.release}</p>
+      <p>Rated : {movie.rated}</p>
+      <p>{`Art et essai : ${movie.arthouse}`}</p>
+      <Image src={`filestorage://${movie.poster}`} />
+    </Card>
+  );
 }
 
 export function MovieList() {
