@@ -1,19 +1,59 @@
 import { useState } from 'react';
-import { Button, Drawer, Form, Input, message } from 'antd';
+import { Alert, Button, Drawer, Form, Input, message } from 'antd';
 import {
   TheMovieDbProvider,
   useTheMovieDb,
 } from '../../provider/TheMovieDBProvider';
+import { TheMovieDbSearchMovieResultParsed } from '@renderer/util/TheMovieDb';
 const { Search } = Input;
 
-function Key() {
-  const onSearch = (value: string) => {
-    console.log(value);
+type TheMovieDbSearchItemProps = {
+  onClick: (movie: TheMovieDbSearchMovieResultParsed) => void;
+  movie: TheMovieDbSearchMovieResultParsed;
+};
+
+function TheMovieDbSearchItem({ movie, onClick }: TheMovieDbSearchItemProps) {
+  return <p onClick={() => onClick(movie)}>{movie.title}</p>;
+}
+
+type KeyProps = {
+  onMovieSelect: (movie: TheMovieDbSearchMovieResultParsed) => void;
+};
+
+function Key({ onMovieSelect }: KeyProps) {
+  const [movies, setMovies] = useState<TheMovieDbSearchMovieResultParsed[]>([]);
+  const [error, setError] = useState<string>();
+  const { search } = useTheMovieDb();
+
+  const onSearch = async (query: string) => {
+    try {
+      const movies = await search(query);
+      setMovies(movies);
+    } catch (e) {
+      setError(
+        "Erreur de lors de la requête à TheMovieDb, veuillez vérifier votre clé d'API"
+      );
+    }
   };
 
   return (
     <div>
-      <Search placeholder="Nom du film" onSearch={onSearch} />
+      <Search
+        placeholder="Nom du film"
+        onSearch={onSearch}
+        style={{ marginBottom: '2vh' }}
+      />
+      {error && <Alert message={error} type="error" />}
+      {movies.map((movie) => (
+        <TheMovieDbSearchItem
+          key={movie.id}
+          movie={movie}
+          onClick={(movie) => {
+            onMovieSelect(movie);
+            setMovies([]);
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -53,9 +93,14 @@ function NoKey() {
 type TheMovieDbDrawerProps = {
   visible: boolean;
   onClose: () => void;
+  onMovieSelect: (movie: TheMovieDbSearchMovieResultParsed) => void;
 };
 
-export function TheMovieDbDrawer({ visible, onClose }: TheMovieDbDrawerProps) {
+export function TheMovieDbDrawer({
+  visible,
+  onClose,
+  onMovieSelect,
+}: TheMovieDbDrawerProps) {
   const { hasValidApiKey } = useTheMovieDb();
 
   return (
@@ -66,12 +111,23 @@ export function TheMovieDbDrawer({ visible, onClose }: TheMovieDbDrawerProps) {
       visible={visible}
     >
       {!hasValidApiKey && <NoKey />}
-      {hasValidApiKey && <Key />}
+      {hasValidApiKey && (
+        <Key
+          onMovieSelect={(movie) => {
+            onMovieSelect(movie);
+            onClose();
+          }}
+        />
+      )}
     </Drawer>
   );
 }
 
-export function TheMovieDbFill() {
+type TheMovieDbFillProps = {
+  onMovieSelect: (movie: TheMovieDbSearchMovieResultParsed) => void;
+};
+
+export function TheMovieDbFill({ onMovieSelect }: TheMovieDbFillProps) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -85,6 +141,7 @@ export function TheMovieDbFill() {
         Autocomplétion
       </Button>
       <TheMovieDbDrawer
+        onMovieSelect={onMovieSelect}
         visible={visible}
         onClose={() => {
           setVisible(false);

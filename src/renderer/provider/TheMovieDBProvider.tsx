@@ -1,8 +1,13 @@
+import {
+  TheMovieDb,
+  TheMovieDbSearchMovieResultParsed,
+} from '../util/TheMovieDb';
 import { useContext, useEffect, useState, createContext } from 'react';
 
 type ITheMovieDbContext = {
   hasValidApiKey: boolean;
   registerApiKey: (key: string) => Promise<void>;
+  search: (query: string) => Promise<TheMovieDbSearchMovieResultParsed[]>;
 };
 
 const TheMovieDbContext = createContext<ITheMovieDbContext>(
@@ -13,10 +18,7 @@ type TheMovieDbProviderProps = {
   children: JSX.Element | JSX.Element[];
 };
 
-export function TheMovieDbProvider(
-  props: TheMovieDbProviderProps
-): JSX.Element {
-  const { children } = props;
+export function TheMovieDbProvider({ children }: TheMovieDbProviderProps) {
   const [key, setKey] = useState<string | null>(null);
   const hasValidApiKey = key ? true : false;
 
@@ -35,8 +37,19 @@ export function TheMovieDbProvider(
     setKey(key);
   };
 
+  const search = async (query: string) => {
+    if (!key) {
+      throw new Error('No api key to call the movie db api');
+    }
+
+    const tmdb = TheMovieDb('fr-FR', key);
+    return await tmdb.search(query);
+  };
+
   return (
-    <TheMovieDbContext.Provider value={{ hasValidApiKey, registerApiKey }}>
+    <TheMovieDbContext.Provider
+      value={{ hasValidApiKey, registerApiKey, search }}
+    >
       {children}
     </TheMovieDbContext.Provider>
   );

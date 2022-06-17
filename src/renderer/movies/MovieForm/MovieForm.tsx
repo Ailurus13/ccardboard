@@ -13,6 +13,7 @@ import { DatePicker } from '../../components/DateFnsPicker';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { TheMovieDbFill } from './TheMovieDbFill';
 import { PosterInput } from '../../components/PosterInput';
+import { StorePosterDto } from '@common/dto/StorePoster.dto';
 import { parse } from 'date-fns';
 
 export function MovieForm() {
@@ -35,7 +36,20 @@ export function MovieForm() {
             <Card
               style={{ marginBottom: '2vh' }}
               title="Film"
-              extra={<TheMovieDbFill />}
+              extra={
+                <TheMovieDbFill
+                  onMovieSelect={(movie) => {
+                    const poster: StorePosterDto = {
+                      type: 'url',
+                      value: movie.poster_full,
+                    };
+                    form.setFields([
+                      { name: 'name', value: movie.title },
+                      { name: 'poster', value: poster },
+                    ]);
+                  }}
+                />
+              }
             >
               <Form.Item
                 label="Nom"
