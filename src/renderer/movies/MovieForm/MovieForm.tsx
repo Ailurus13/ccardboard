@@ -7,13 +7,13 @@ import {
   Card,
   Switch,
   Select,
-  DatePicker,
   Space,
 } from 'antd';
+import { DatePicker } from '../../components/DateFnsPicker';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { TheMovieDbFill } from './TheMovieDbFill';
 import { PosterInput } from '../../components/PosterInput';
-import moment from 'moment';
+import { parse } from 'date-fns';
 
 export function MovieForm() {
   const [form] = Form.useForm();
@@ -131,7 +131,11 @@ export function MovieForm() {
                           <DatePicker
                             showNow={false}
                             showTime={{
-                              defaultValue: moment('21:00:00', 'HH:mm:ss'),
+                              defaultValue: parse(
+                                '21:00:00',
+                                'HH:mm:ss',
+                                new Date()
+                              ),
                             }}
                           />
                         </Form.Item>

@@ -6,7 +6,9 @@ import { MovieList } from './movies/MovieList';
 import { Template } from './template/Template';
 import { Video } from './video/Video';
 import locale from 'antd/lib/locale/fr_FR';
-import 'moment/locale/fr';
+
+// FIX: DateFns locale : https://github.com/ant-design/ant-design/issues/26699
+locale.DatePicker.lang.locale = 'fr';
 
 function App() {
   return (
