@@ -1,24 +1,29 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Seance } from './Seance.entity';
 
 @Entity()
 export class Movie {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ nullable: false })
+  @Column()
   name: string;
 
-  @Column({ nullable: false })
+  @Column()
   poster: string;
 
-  @Column({ nullable: false })
+  @Column()
   release: string;
 
-  @Column({ nullable: false })
+  @Column()
   arthouse: boolean;
 
-  @Column()
-  rated: number;
+  @Column({ nullable: true })
+  rated?: number;
 
-  // TODO: Seances
+  @OneToMany(() => Seance, (seance) => seance.movie, {
+    cascade: true,
+    eager: true,
+  })
+  seances: Seance[];
 }

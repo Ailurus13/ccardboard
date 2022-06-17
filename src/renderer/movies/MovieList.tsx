@@ -13,6 +13,9 @@ export function MovieItem({ movie }: MovieItemProps) {
       <p>Rated : {movie.rated}</p>
       <p>{`Art et essai : ${movie.arthouse}`}</p>
       <Image src={`filestorage://${movie.poster}`} />
+      {movie.seances?.map((s) => (
+        <p>{s.date.toDateString()}</p>
+      ))}
     </Card>
   );
 }

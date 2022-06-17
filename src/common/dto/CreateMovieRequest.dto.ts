@@ -1,3 +1,4 @@
+import { CreateSeanceDTO } from './CreateSeance.dto';
 import { StorePosterDto } from './StorePoster.dto';
 
 export type CreateMovieRequestDTO = {
@@ -6,4 +7,5 @@ export type CreateMovieRequestDTO = {
   poster: StorePosterDto;
   arthouse: boolean;
   rated: 10 | 12 | 16 | 18 | null | undefined;
+  seances: CreateSeanceDTO[];
 };

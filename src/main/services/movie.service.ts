@@ -1,9 +1,9 @@
 import { db } from '@main/db';
 import { Movie } from '@common/entity/Movie.entity';
 import { CreateMovieDTO } from '@common/dto/CreateMovie.dto';
+import { Seance } from '@common/entity/Seance.entity';
 
 export async function createMovie(movie: CreateMovieDTO) {
-  console.log(movie);
   const movieRepository = db.getRepository(Movie);
   const createdMovie = new Movie();
   createdMovie.name = movie.name;
@@ -11,6 +11,12 @@ export async function createMovie(movie: CreateMovieDTO) {
   createdMovie.release = movie.release;
   createdMovie.rated = movie.rated;
   createdMovie.poster = movie.poster;
+  createdMovie.seances = movie.seances?.map((s) => {
+    const seance = new Seance();
+    seance.date = s.date;
+    seance.langage = s.langage;
+    return seance;
+  });
   await movieRepository.save(createdMovie);
   return createdMovie;
 }
