@@ -1,6 +1,7 @@
 import { Player } from '@remotion/player';
 import { Button } from 'antd';
 import { HelloWorldComp } from '../../remotion/HelloWorldComp';
+import { MovieInput } from './MovieInput';
 
 export function Video() {
   const download = async () => {
@@ -10,6 +11,7 @@ export function Video() {
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ flex: 1 }}>
+        <MovieInput />
         <h1>Hello Vidéo</h1>
         <p>Voici un example de vidéo en utilisant remotion.</p>
         <p>La vidéo est téléchargeable en cliquant sur le bouton suivant :</p>
