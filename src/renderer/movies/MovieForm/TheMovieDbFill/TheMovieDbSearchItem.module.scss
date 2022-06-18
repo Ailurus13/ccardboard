@@ -1,0 +1,14 @@
+.container {
+  cursor: pointer;
+  display: flex;
+  max-height: 150px;
+  gap: 1vw;
+}
+
+.container:hover {
+  background-color: lightgray;
+}
+
+.image {
+  max-height: 150px;
+}

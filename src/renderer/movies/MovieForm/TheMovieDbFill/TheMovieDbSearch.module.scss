@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  .search {
+    margin-bottom: 2vh;
+  }
+
+  .result {
+    flex: 1;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+  }
+}

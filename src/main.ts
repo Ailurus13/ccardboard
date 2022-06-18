@@ -68,7 +68,9 @@ app.on('ready', async () => {
     callback({
       responseHeaders: {
         ...details.responseHeaders,
-        'Content-Security-Policy': ['img-src filestorage:;'],
+        'Content-Security-Policy': [
+          'img-src https://image.tmdb.org filestorage:;',
+        ],
       },
     });
   });

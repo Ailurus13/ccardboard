@@ -1,20 +1,20 @@
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { StorePosterDto } from '@common/dto/StorePoster.dto';
 import {
+  Button,
+  Card,
   Form,
   Input,
-  Button,
   message,
   Radio,
-  Card,
-  Switch,
   Select,
   Space,
+  Switch,
 } from 'antd';
-import { DatePicker } from '../../components/DateFnsPicker';
-import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { TheMovieDbFill } from './TheMovieDbFill';
-import { PosterInput } from '../../components/PosterInput/PosterInput';
-import { StorePosterDto } from '@common/dto/StorePoster.dto';
 import { parse } from 'date-fns';
+import { DatePicker } from '../../components/DateFnsPicker';
+import { PosterInput } from '../../components/PosterInput/PosterInput';
+import { TheMovieDbFillButton } from './TheMovieDbFill/TheMovieDbFillButton';
 
 export function MovieForm() {
   const [form] = Form.useForm();
@@ -37,7 +37,7 @@ export function MovieForm() {
               style={{ marginBottom: '2vh' }}
               title="Film"
               extra={
-                <TheMovieDbFill
+                <TheMovieDbFillButton
                   onMovieSelect={(movie) => {
                     const poster: StorePosterDto = {
                       type: 'url',
