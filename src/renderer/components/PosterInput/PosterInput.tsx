@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Button, Modal } from 'antd';
 import { InboxOutlined, GlobalOutlined } from '@ant-design/icons';
-import { InputFile } from './InputFile';
+import { InputFile } from '../InputFile';
+import styles from './PosterInput.module.scss';
 
 type Poster = {
   type: 'path' | 'url';
@@ -51,17 +52,15 @@ export function PosterInput({ value: poster, onChange }: PosterInputProps) {
         onCancel={cancel}
         cancelText="Annuler"
       >
-        <div style={{ display: 'flex', flexDirection: 'row', gap: '1vh' }}>
-          <div>
-            <div>
-              <InboxOutlined />
-              <p>Depuis mon ordinateur</p>
-              <InputFile disabled={!!url} value={file} onChange={setFile} />
-            </div>
+        <div className={styles['container']}>
+          <div className={styles['local']}>
+            <InboxOutlined className={styles['icon']} />
+            <p>Depuis mon ordinateur</p>
+            <InputFile disabled={!!url} value={file} onChange={setFile} />
           </div>
           <div>ou</div>
-          <div>
-            <GlobalOutlined />
+          <div className={styles['remote']}>
+            <GlobalOutlined className={styles['icon']} />
             <p>Depuis internet</p>
             <input
               value={url}

@@ -1,0 +1,26 @@
+.tags {
+  * {
+    flex: 1;
+  }
+
+  display: flex;
+  margin-bottom: 1vh;
+}
+
+.card-content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  gap: 1vw;
+
+  .informations {
+    flex: 1;
+  }
+
+  .poster {
+    flex: 1;
+    .image {
+      max-height: 150px;
+    }
+  }
+}

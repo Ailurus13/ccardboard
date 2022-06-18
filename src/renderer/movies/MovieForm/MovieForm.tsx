@@ -12,7 +12,7 @@ import {
 import { DatePicker } from '../../components/DateFnsPicker';
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { TheMovieDbFill } from './TheMovieDbFill';
-import { PosterInput } from '../../components/PosterInput';
+import { PosterInput } from '../../components/PosterInput/PosterInput';
 import { StorePosterDto } from '@common/dto/StorePoster.dto';
 import { parse } from 'date-fns';
 

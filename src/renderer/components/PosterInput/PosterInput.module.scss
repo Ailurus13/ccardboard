@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  text-align: center;
+  gap: 1vh;
+
+  .local {
+    flex: 2;
+  }
+
+  .remote {
+    flex: 2;
+  }
+}
+
+.icon {
+  font-size: 2.5em;
+}

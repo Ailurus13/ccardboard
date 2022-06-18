@@ -107,6 +107,7 @@ export function TheMovieDbDrawer({
     <Drawer
       title="Autocomplétion"
       placement="right"
+      size="large"
       onClose={onClose}
       visible={visible}
     >
